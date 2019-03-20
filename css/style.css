@@ -1,0 +1,16 @@
+.card {
+  margin: 1%; }
+
+#spacer {
+  height: 8em; }
+
+nav.navbar {
+  z-index: 999999;
+  width: 100%;
+  position: fixed; }
+nav a {
+  margin-left: 18%; }
+nav form {
+  margin-right: 16.5%; }
+
+/*# sourceMappingURL=style.css.map */
