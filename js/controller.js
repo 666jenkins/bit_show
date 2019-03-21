@@ -2,7 +2,6 @@ const controller = ((ui, data) => {
 
     function init() {
         data.fetchShows(function (data) {
-            console.log(data);
 
             ui.printShows(data);
             ui.onClick();

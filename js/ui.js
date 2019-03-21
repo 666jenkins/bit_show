@@ -1,13 +1,12 @@
-
 const uiModule = ((data) => {
 
     const $searchForm = $('form');
     const $searchBox = $('form input');
     const $searchButton = $('form button');
-    const $liveSearch = $('#livesearch');
+    const $dataList = $('.showsList');
     const $main = $('main');
-    
-    function printShows (array) {
+
+    function printShows(array) {
         $.each(array, function (i) {
             $main.append(
                 `<div show-id="${array[i].id}" class="card col-md-3 pt-3" style="width: 18rem;">
@@ -22,13 +21,11 @@ const uiModule = ((data) => {
                         <p class="card-text d-inline">${array[i].name}</p>
                     </div>
                 </div>`
-                )
-            });
-        }
-    
-    function printSingle (obj) {
+            )
+        });
+    }
 
-        const genres = obj.genres.join(', ');
+    function printSingle(obj) {
 
         $main.append(
             `<div class="card flex-row col-9">
@@ -37,14 +34,14 @@ const uiModule = ((data) => {
                     <h1 class="card-title">${obj.name}</h1>
                     <p class="card-text">${obj.summary}</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">${genres}</li>
+                        <li class="list-group-item">${obj.genres.join(', ')}</li>
                         <li class="list-group-item">Premiered: ${obj.premiered}</li>
                     </ul>
                 </div>
             </div>`
         )
     }
-    
+
     function onClick() {
         $('main div.card').click(function () {
             let showId = this.getAttribute("show-id");
@@ -55,21 +52,20 @@ const uiModule = ((data) => {
 
     function search() {
 
-        let showsForSearch;
         let searchTerm = $searchBox.val();
-        
-        data.fetchShows(function(data) {
-            showsForSearch = data;            
-        })
 
-        $searchBox.on('keyup', function() {
-            $.each(showsForSearch, function(i) {
-                if (showsForSearch[i].name.includes(searchTerm)) {
-                    $liveSearch.html(
-                        `<p>${showsForSearch[i].name}</p>`
-                    )
-                }
+        data.fetchShows(function (data) {
+            const myShows = data;
+            $.each(myShows, function (i) {
+                $dataList.append(`<li data-id="${myShows[i].id}">${myShows[i].name}</li>`)
             })
+
+            $('li').on('click', function () {
+                let showId = this.getAttribute("data-id");
+                localStorage.setItem('showId', showId);
+                location.href = "./show.html"
+            })
+
         })
     }
 
