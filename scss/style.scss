@@ -1,7 +1,15 @@
 .card {
     margin: 1%;
 }
-#spacer{
+div.image-badge {
+    position: relative;
+    & span {
+        position: absolute;
+        top: 95%;
+        left: 80%;
+    }
+}
+.spacer{
     height: 8em;
 }
 nav {

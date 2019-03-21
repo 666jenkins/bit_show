@@ -2,40 +2,62 @@ const dataModule = (() => {
 
     const API_BASE_URL = 'http://api.tvmaze.com';
 
+    class Show {
+        constructor(id, name, rating, image, summary, premiered, genres) {
+            this.id = id
+            this.name = name
+            this.rating = rating
+            this.image = image
+            this.summary = summary
+            this.premiered = premiered
+            this.genres = genres
+        }
+    }
+
     function fetchShows(onSuccess) {
 
         const showsRequestUrl = `${API_BASE_URL}/show`
-
-        class Show {
-            constructor(id, name, rating, image) {
-                this.id = id
-                this.name = name
-                this.rating = rating
-                this.image = image
-            }
-        }
 
         $.get(showsRequestUrl, function (showsArr) {
 
             const myShows = showsArr
                 .slice(0, 50)
-                .map(obj => {
-                    return new Show(obj.id, obj.name, obj.rating.average, obj.image.medium);
+                .map((item) => {
+                    const {id, name, rating, image} = item;
+                    return new Show(id, name, rating.average, image.medium);
                 });
 
             onSuccess(myShows);
         })
     }
 
-    function printShow() {
-        const showPageUrl = `${API_BASE_URL}/shows/${localStorage.getItem('showId')}`
-        $.get(showPageUrl, function (data) {
-            console.log(data);
+    function singleShow(onSuccess) {
+
+        const showId = localStorage.getItem('showId')
+        const showPageUrl = `${API_BASE_URL}/shows/${showId}`
+        
+        
+        $.get(showPageUrl, function (showData) {
+
+            console.log(showData);
+
+            const myShow = new Show(
+                showId,
+                showData.name,
+                undefined,
+                showData.image.original,
+                showData.summary,
+                showData.premiered,
+                showData.genres
+                );
+
+            onSuccess(myShow);
         })
     }
 
     return {
-        fetchShows, printShow
+        fetchShows,
+        singleShow
     }
 
 })()
