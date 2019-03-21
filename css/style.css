@@ -11,9 +11,6 @@ div.image-badge {
 .spacer {
   height: 8em; }
 
-datalist option:nth-child(1n+6) {
-  visibility: hidden; }
-
 nav.navbar {
   z-index: 999999;
   width: 100%;

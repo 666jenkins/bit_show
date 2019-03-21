@@ -7,6 +7,7 @@ const controller = ((ui, data) => {
             ui.onClick();
             ui.search();
         });
+        data.searchShows();
     }
 
     function initDetail() {

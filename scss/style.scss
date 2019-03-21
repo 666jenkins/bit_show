@@ -12,9 +12,9 @@ div.image-badge {
 .spacer{
     height: 8em;
 }
-datalist option:nth-child(1n+6) {
-    visibility: hidden;
-  }
+// .dropdown-item {
+//     position: absolute;
+// }
 nav {
     &.navbar{
         z-index: 999999;

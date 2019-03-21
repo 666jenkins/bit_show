@@ -52,21 +52,21 @@ const uiModule = ((data) => {
 
     function search() {
 
-        let searchTerm = $searchBox.val();
+        // let searchTerm = $searchBox.val();
 
-        data.fetchShows(function (data) {
-            const myShows = data;
-            $.each(myShows, function (i) {
-                $dataList.append(`<li data-id="${myShows[i].id}">${myShows[i].name}</li>`)
-            })
+        // data.fetchShows(function (data) {
+        //     const myShows = data;
+        //     $.each(myShows, function (i) {
+        //         $dataList.append(`<li data-id="${myShows[i].id}">${myShows[i].name}</li>`)
+        //     })
 
-            $('li').on('click', function () {
-                let showId = this.getAttribute("data-id");
-                localStorage.setItem('showId', showId);
-                location.href = "./show.html"
-            })
+        //     $('li').on('click', function () {
+        //         let showId = this.getAttribute("data-id");
+        //         localStorage.setItem('showId', showId);
+        //         location.href = "./show.html"
+        //     })
 
-        })
+        // })
     }
 
     return {

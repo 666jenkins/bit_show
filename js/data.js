@@ -55,9 +55,32 @@ const dataModule = (() => {
         })
     }
 
+    function searchShows() {
+
+        const searchBox = $('input');
+        let showsFound;
+        
+        let searchRequest = `${API_BASE_URL}/search/shows?q=`
+
+        searchBox.on('keyup', function() {
+            let searchQuery = searchRequest + searchBox.val();
+            console.log(searchQuery);
+            $.get(searchQuery, function (searchData) {
+                showsFound = searchData;
+            })
+            console.log(showsFound);
+        })
+
+
+        // $('#target').submit(function(event) {
+        //     event.preventDefault();
+        // })
+    }
+
     return {
         fetchShows,
-        singleShow
+        singleShow,
+        searchShows
     }
 
 })()
