@@ -3,7 +3,6 @@ const uiModule = ((data) => {
     const $searchForm = $('form');
     const $searchBox = $('form input');
     const $searchButton = $('form button');
-    const $dataList = $('.showsList');
     const $main = $('main');
 
     function printShows(array) {
@@ -43,36 +42,38 @@ const uiModule = ((data) => {
     }
 
     function onClick() {
-        $('main div.card').click(function () {
+        $('main div.card').click(function() {
             let showId = this.getAttribute("show-id");
             localStorage.setItem('showId', showId);
             location.href = "./show.html"
         })
+        $('a.dropdown-item').click(function() {
+            location.href = "./show.html"
+        })
     }
 
-    function search() {
+    function onHover() {
+        $('a.dropdown-item').hover(function() {
+            let searchId = this.getAttribute('show-id');
+            localStorage.setItem('showId', searchId);
+        })
+    }
 
-        // let searchTerm = $searchBox.val();
-
-        // data.fetchShows(function (data) {
-        //     const myShows = data;
-        //     $.each(myShows, function (i) {
-        //         $dataList.append(`<li data-id="${myShows[i].id}">${myShows[i].name}</li>`)
-        //     })
-
-        //     $('li').on('click', function () {
-        //         let showId = this.getAttribute("data-id");
-        //         localStorage.setItem('showId', showId);
-        //         location.href = "./show.html"
-        //     })
-
-        // })
+    function addToDDItem(arr) {
+        $.each(arr, function (i) {
+            $(".dropdown-menu").append(
+                `<a class="dropdown-item" show-id="${arr[i].show.id}">
+                    ${arr[i].show.name}
+                </a>`
+            )
+        })
     }
 
     return {
         onClick,
         printShows,
         printSingle,
-        search
+        onHover,
+        addToDDItem
     }
 })(dataModule)

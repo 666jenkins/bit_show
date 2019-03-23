@@ -2,18 +2,18 @@ const controller = ((ui, data) => {
 
     function init() {
         data.fetchShows(function (data) {
-
             ui.printShows(data);
             ui.onClick();
-            ui.search();
         });
-        data.searchShows();
+        data.searchShows(function (data) {
+            ui.addToDDItem(data);
+            ui.onHover();
+            ui.onClick();
+        });
     }
 
     function initDetail() {
         data.singleShow(function (data) {
-            console.log(data);
-
             ui.printSingle(data);
         });
     }

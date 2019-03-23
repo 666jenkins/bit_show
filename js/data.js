@@ -39,8 +39,6 @@ const dataModule = (() => {
         
         $.get(showPageUrl, function (showData) {
 
-            console.log(showData);
-
             const myShow = new Show(
                 showId,
                 showData.name,
@@ -55,20 +53,21 @@ const dataModule = (() => {
         })
     }
 
-    function searchShows() {
+    function searchShows(addDropdown) {
 
         const searchBox = $('input');
         let showsFound;
         
         let searchRequest = `${API_BASE_URL}/search/shows?q=`
 
-        searchBox.on('keyup', function() {
+        searchBox.on('input', function() {
             let searchQuery = searchRequest + searchBox.val();
-            console.log(searchQuery);
             $.get(searchQuery, function (searchData) {
                 showsFound = searchData;
             })
-            console.log(showsFound);
+            $(".dropdown-menu").html("");
+            addDropdown(showsFound);
+            $('.dropdown-toggle').dropdown();
         })
 
 

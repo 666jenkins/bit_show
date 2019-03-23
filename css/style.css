@@ -11,6 +11,14 @@ div.image-badge {
 .spacer {
   height: 8em; }
 
+a.dropdown-item {
+  margin-left: 0; }
+  a.dropdown-item:hover {
+    cursor: pointer; }
+
+div.dropdown-toggle::after {
+  content: none; }
+
 nav.navbar {
   z-index: 999999;
   width: 100%;

@@ -12,9 +12,15 @@ div.image-badge {
 .spacer{
     height: 8em;
 }
-// .dropdown-item {
-//     position: absolute;
-// }
+a.dropdown-item {
+    margin-left: 0;
+    &:hover {
+        cursor: pointer;
+    }
+}
+div.dropdown-toggle::after {
+    content: none;
+}
 nav {
     &.navbar{
         z-index: 999999;
