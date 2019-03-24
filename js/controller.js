@@ -7,7 +7,6 @@ const controller = ((ui, data) => {
         });
         data.searchShows(function (data) {
             ui.addToDDItem(data);
-            ui.onHover();
             ui.onClick();
         });
     }

@@ -48,14 +48,9 @@ const uiModule = ((data) => {
             location.href = "./show.html"
         })
         $('a.dropdown-item').click(function() {
-            location.href = "./show.html"
-        })
-    }
-
-    function onHover() {
-        $('a.dropdown-item').hover(function() {
             let searchId = this.getAttribute('show-id');
             localStorage.setItem('showId', searchId);
+            location.href = "./show.html"
         })
     }
 
@@ -73,7 +68,6 @@ const uiModule = ((data) => {
         onClick,
         printShows,
         printSingle,
-        onHover,
         addToDDItem
     }
 })(dataModule)
